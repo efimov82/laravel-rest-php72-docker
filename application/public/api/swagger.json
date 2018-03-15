@@ -1,0 +1,455 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel RestApi",
+        "description": "Laravel 5.2 Rest Api.",
+        "contact": {
+            "email": "efimov82@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000/rest-api/v1",
+    "basePath": "/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/articles": {
+            "get": {
+                "tags": [
+                    "articles"
+                ],
+                "description": "Returns listing of articles.",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Articles list.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Article"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "articles"
+                ],
+                "description": "Add new article.",
+                "parameters": [
+                    {
+                        "name": "article",
+                        "in": "body",
+                        "description": "New Article to add to the store",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Article created successful",
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    }
+                }
+            }
+        },
+        "/articles/{id}": {
+            "get": {
+                "tags": [
+                    "articles"
+                ],
+                "description": "Returns detail of article.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Article id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Detail of the Article.",
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    },
+                    "404": {
+                        "description": "Article not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "articles"
+                ],
+                "description": "Update article.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Article id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "article",
+                        "in": "body",
+                        "description": "Article to update",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Article update successful",
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "articles"
+                ],
+                "description": "Delete article.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Article id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Article deleted"
+                    }
+                }
+            }
+        },
+        "/videos": {
+            "get": {
+                "tags": [
+                    "videos"
+                ],
+                "description": "Returns listing of videos.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "auth token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "offset",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns listing of videos.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Video"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "video"
+                ],
+                "description": "Add new video.",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "auth token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "video",
+                        "in": "body",
+                        "description": "Video to add to the store",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Video"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Video created successful",
+                        "schema": {
+                            "$ref": "#/definitions/Video"
+                        }
+                    }
+                }
+            }
+        },
+        "/videos/{id}": {
+            "get": {
+                "tags": [
+                    "videos"
+                ],
+                "summary": "Detail of the Video.",
+                "description": "Returns detail of video.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "auth token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Video id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Detail of the Video.",
+                        "schema": {
+                            "$ref": "#/definitions/Video"
+                        }
+                    },
+                    "404": {
+                        "description": "Video not found."
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "video"
+                ],
+                "description": "Update video.",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "auth token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Video ID",
+                        "type": "string"
+                    },
+                    {
+                        "name": "video",
+                        "in": "body",
+                        "description": "Video to add to the store",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Video"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Video updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "video"
+                ],
+                "summary": "Delete Video.",
+                "description": "Delete video.",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "auth token",
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Video id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Video deleted"
+                    },
+                    "403": {
+                        "description": "Forbiden"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "VideoStatus": {
+            "properties": {
+                "value": {
+                    "description": "Encoding status",
+                    "enum": "['New', 'Available', 'Encoding', 'Unavailable', 'Unknown', 'Deleted']"
+                }
+            },
+            "type": "string",
+            "xml": {
+                "name": "VideoStatus"
+            }
+        },
+        "Article": {
+            "required": [
+                "title",
+                "body"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Unique identifier for the article",
+                    "type": "integer",
+                    "format": "int64",
+                    "readOnly": true
+                },
+                "title": {
+                    "description": "Title of the article",
+                    "type": "string"
+                },
+                "body": {
+                    "description": "Body of the article",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "Datetime create of the article",
+                    "type": "string",
+                    "format": "YYYY-mm-dd HH:mm:ss",
+                    "readOnly": true
+                },
+                "updated_at": {
+                    "description": "Datetime update of the article",
+                    "type": "string",
+                    "format": "YYYY-mm-dd HH:mm:ss",
+                    "readOnly": true
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Article"
+            }
+        },
+        "Owner": {
+            "required": [
+                "full_name",
+                "email"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Unique identifier",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "full_name": {
+                    "description": "Owner full name",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "Owner email",
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Owner"
+            }
+        },
+        "Video": {
+            "required": [
+                "title",
+                "owner_id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Unique identifier for the Video",
+                    "type": "integer",
+                    "format": "int64",
+                    "readOnly": true
+                },
+                "title": {
+                    "description": "Title of the video",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the video",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "Slug of the video",
+                    "type": "string",
+                    "readOnly": true
+                },
+                "filename": {
+                    "description": "Filename of the video",
+                    "type": "string"
+                },
+                "owner_id": {
+                    "description": "Owner ID of the video",
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "owner": {
+                    "description": "Owner of the video",
+                    "readOnly": true,
+                    "$ref": "#/definitions/Owner"
+                },
+                "created_at": {
+                    "description": "Datetime create of the article",
+                    "type": "string",
+                    "format": "YYYY-mm-dd HH:mm:ss",
+                    "readOnly": true
+                },
+                "status": {
+                    "$ref": "#/definitions/VideoStatus"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Video"
+            }
+        }
+    }
+}
